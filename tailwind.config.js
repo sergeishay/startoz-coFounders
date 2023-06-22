@@ -7,12 +7,23 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+      },
+      colors: {
+        'primary-orange': '#FF5722',
+        'primary-turkiz': '#00ADB5',
+        'primary-gray': '#828282',
+
+        
+      },
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'hero-pattern': "url('/startoz/public/assets/heroback.svg)",
+        // 'footer-texture': "url('/img/footer-texture.png')",
       },
     },
   },
-  plugins: [],
+  plugins: [
+  ],
 }

@@ -35,22 +35,22 @@ const Login = () => {
     }
   }, [status, session]);
 
-const signInUser = async (provider) => {
-    const result =await  signIn(provider);
-    console.log(result)
-    if (result.error) {
-        console.log(result.error);
-    } else {
-        // Check if it's the user's first visit
-        if (result.isFirstVisit) {
-            // If it's the user's first visit, redirect to the onboarding page
-            router.push('/on-boarding');
-        } else {
-            // If it's not the user's first visit, redirect to the profile page
-            router.push('/profile');
-        }
-    }
-};
+// const signInUser = async (provider) => {
+//     const result =await  signIn(provider);
+//     console.log(result)
+//     if (result.error) {
+//         console.log(result.error);
+//     } else {
+//         // Check if it's the user's first visit
+//         if (result.isFirstVisit) {
+//             // If it's the user's first visit, redirect to the onboarding page
+//             router.push('/on-boarding');
+//         } else {
+//             // If it's not the user's first visit, redirect to the profile page
+//             router.push('/profile');
+//         }
+//     }
+// };
 
 
   const userLogin = async (e) => {
@@ -144,7 +144,7 @@ const signInUser = async (provider) => {
           <div>
             <button
               type="button"
-              onClick={() => signInUser("google")}
+              onClick={() => signIn("google")}
               className='flex w-full justify-center rounded-xl bg-sky-600 px-3 py-1 text-m font-semibold leading-6 text-white shadow-sm hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600'
             >
               <Image src={googleicon} alt="gooogle-icon" className='w-5 h-5 mr-2' />
@@ -152,7 +152,7 @@ const signInUser = async (provider) => {
             </button>
             <button
               type="button"
-              onClick={() => signInUser("facebook")}
+              onClick={() => signIn("facebook")}
               className='flex w-full justify-center rounded-xl bg-sky-400 px-3 py-1 mt-2 text-m font-semibold leading-6 text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400'
             >
               <Image src={facebookicon} alt="gooogle-icon" className='w-5 h-5 mr-2' />

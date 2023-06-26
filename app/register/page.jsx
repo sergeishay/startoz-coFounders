@@ -30,30 +30,7 @@ const Register = () => {
         }
         setUpProviders()
     }, [])
-    // useEffect(() => {
-    //     if (session) {
-    //         if (session.user.isFirstVisit) {
-    //             console.log(router)
-    //             router.push('/co-founders');
-    //         } else {
-    //             router.push('/co-founders');
-    //         }
-    //     }
-    // }, [session]);
-    // const signInUser = async (e) => {
-    //     // e.preventDefault()
-    //     console.log(username, email, password)
-    //     let options = { redirect: false, username, email, password }
-    //     const res = await signIn("Credentials", options)
-    //     console.log(res + ' ' + "cra res")
-    // }
-    // const registerUser = async (e) => {
-    //     e.preventDefault();
-    //    const res =await  axios.post('/api/register', data)
-    //     .then(() => toast.success("user has been registered"))
-    //     .catch(() =>(toast.error("You have a Error")))
-    //     console.log(res)
-    // }
+
     
     const submitError = (error) => {
         toast.error(error + " Try to login instead");
@@ -66,8 +43,8 @@ const Register = () => {
             const res = await axios.post('/api/register', data);
             toast.success("User has been registered");
             console.log(router)
-            router.push('/on-boarding');
-        } catch (err) {
+            router.push(`/on-boarding/${res.data.user._id}`);
+      } catch (err) {
             console.log(err.response);
             if (err.response && err.response.status === 400) {
                 submitError(err.response.data)
@@ -81,31 +58,32 @@ const Register = () => {
         if (status === "authenticated") {
           // Check if it's the user's first visit
           if (session.user.isFirstVisit) {
+            console.log(session.user)
             // If it's the user's first visit, redirect to the onboarding page
-            router.push('/on-boarding');
+            router.push(`/on-boarding/`);
           } else {
             // If it's not the user's first visit, redirect to the profile page
-            router.push('/profile');
+            router.push(`/profile/`);
           }
         }
       }, [status, session]);
 
-    const signInUser = async (provider) => {
-        const result =await  signIn(provider);
-        console.log(result)
-        if (result.error) {
-            toast.error(result.error);
-        } else {
-            // Check if it's the user's first visit
-            if (result.isFirstVisit) {
-                // If it's the user's first visit, redirect to the onboarding page
-                router.push('/on-boarding');
-            } else {
-                // If it's not the user's first visit, redirect to the profile page
-                router.push('/profile');
-            }
-        }
-    };
+    // const signInUser = async (provider) => {
+    //     const result =await  signIn(provider);
+    //     console.log(result)
+    //     if (result.error) {
+    //         toast.error(result.error);
+    //     } else {
+    //         // Check if it's the user's first visit
+    //         if (result.isFirstVisit) {
+    //             // If it's the user's first visit, redirect to the onboarding page
+    //             router.push('/on-boarding');
+    //         } else {
+    //             // If it's not the user's first visit, redirect to the profile page
+    //             router.push('/profile');
+    //         }
+    //     }
+    // };
     return (
         <>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -196,7 +174,7 @@ const Register = () => {
                     <div>
                         <button
                             type="button"
-                            onClick={() => signInUser("google")}
+                            onClick={() => signIn("google")}
                             className='flex w-full justify-center rounded-xl bg-sky-600 px-3 py-1 text-m font-semibold leading-6 text-white shadow-sm hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600'
                         >
                             <Image src={googleicon} alt="gooogle-icon" className='w-5 h-5 mr-2' />
@@ -204,7 +182,7 @@ const Register = () => {
                         </button>
                         <button
                             type="button"
-                            onClick={() => signInUser("facebook")}
+                            onClick={() => signIn("facebook")}
                             className='flex w-full justify-center rounded-xl bg-sky-400 px-3 py-1 mt-2 text-m font-semibold leading-6 text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400'
                         >
                             <Image src={facebookicon} alt="gooogle-icon" className='w-5 h-5 mr-2' />

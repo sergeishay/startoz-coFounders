@@ -1,6 +1,8 @@
-import { Schema, model, models } from 'mongoose';
+import mongoose from 'mongoose';
 
-const UserSchema = new Schema({
+const options = { discriminatorKey: 'userType' }; // Our discriminator field
+
+const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: [true, 'Email already exists!'],
@@ -20,8 +22,6 @@ const UserSchema = new Schema({
     type: Boolean,
     default: true,
   }
-});
+}, options); // We add our options to the base schema
 
-const User = models.User || model("User", UserSchema);
-
-export default User;
+export default mongoose.models.User || mongoose.model('User', UserSchema);

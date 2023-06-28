@@ -36,7 +36,6 @@ const Register = () => {
         toast.error(error + " Try to login instead");
     }
 
-    console.log(session)
     const registerUser = async (e) => {
         e.preventDefault();
         try {
@@ -58,7 +57,6 @@ const Register = () => {
         if (status === "authenticated") {
           // Check if it's the user's first visit
           if (session.user.isFirstVisit) {
-            console.log(session.user)
             // If it's the user's first visit, redirect to the onboarding page
             router.push(`/on-boarding/`);
           } else {

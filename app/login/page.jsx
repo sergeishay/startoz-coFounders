@@ -20,7 +20,6 @@ const Login = () => {
   const router = useRouter()
   const { data: session, status } = useSession();
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
-  console.log(session)
 
   useEffect(() => {
     if (status === "authenticated") {

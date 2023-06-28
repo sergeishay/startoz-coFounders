@@ -13,7 +13,7 @@ export async function POST(request){
         return  NextResponse.json('missing fields', {status:400})
     }
     await connectToDB();
-
+    console.log("ggdfgdgdfg")
     const exist = await User.findOne({ email });
     if(exist){
         return  NextResponse.json("Email already exists", {status:400})

@@ -4,7 +4,8 @@
 import { useState, useEffect } from "react"
 import React from 'react'
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
+
 import Link from 'next/link';
 import Image from 'next/image';
 // import CoFounderForm from './CoFounderForm';
